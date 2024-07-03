@@ -1,5 +1,4 @@
 import axiosWithAuth from "./axiosConfig";
-
 export const userSignup = async (data)=>{
     try{
         const response = await axiosWithAuth.post('/user/userRegister',data)
