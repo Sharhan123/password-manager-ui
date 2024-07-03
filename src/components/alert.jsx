@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 const ModalExample = ({open,close,text}) => {
   return (

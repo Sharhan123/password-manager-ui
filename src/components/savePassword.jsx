@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { savePassword } from '../services/userService'
 
 
@@ -26,7 +26,7 @@ const SavePassword = ({ open, close ,pass,finished }) => {
           setError('Please provide a label atleast 4 characters')
           return
         }
-        const res = await savePassword(data)
+         await savePassword(data)
         close()
         finished()
       }catch(err){
@@ -54,8 +54,8 @@ const SavePassword = ({ open, close ,pass,finished }) => {
           <label className="block text-start uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-password">
               Label 
             </label>
-            <input value={label} onChange={(e)=>{setLabel(e.target.value)}} placeholder='Please provide a label' className='w-full web-regular h-10 px-2 rounded bg-white' type='text' />
-
+            <input value={label} onChange={(e)=>{setLabel(e.target.value)}} placeholder='Please provide a label' className={`${error?'border-red-500':''}w-full web-regular h-10 px-2 rounded bg-white`} type='text' />
+            <p className='text-red-500 web-regular text-md'>{error}</p>
           </div>
           </div>
 

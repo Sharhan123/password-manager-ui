@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ReplayIcon from '@mui/icons-material/Replay';
 import ModalExample from './alert';
-import RangeSlider from './slider';
 import SavePassword from './savePassword';
 const MainContent = () => {
     const [password, setPassword] = useState('');
@@ -45,33 +44,35 @@ const MainContent = () => {
         }
     };
 
-    const lengthChange = ()=>{
+    
+
+    const lengthChange = useCallback(() => {
         const newPassword = generateRandomPassword();
-        setPassword(newPassword)
-        if(length <4){
-            setStrong('Very Weak')
-            return
+        setPassword(newPassword);
+    
+        if (length < 4) {
+          setStrong('Very Weak');
+          return;
         }
-        if(length <6){
-            setStrong('Weak')
-            return
+        if (length < 6) {
+          setStrong('Weak');
+          return;
         }
-        if(length < 10 ){
-            setStrong('Strong')
-            return
+        if (length < 10) {
+          setStrong('Strong');
+          return;
         }
-
-        if(length <15){
-            setStrong('Very Strong')
-            return
+        if (length < 15) {
+          setStrong('Very Strong');
+          return;
         }
-    }
-
-    useEffect(()=>{
-        lengthChange()
-        
-    },[length, useUppercase, useLowercase, useDigits, useSpecial])
-    const copyToClipboard = () => {
+      }, [length]);
+    
+      useEffect(() => {
+        lengthChange();
+      }, [length, useUppercase, useLowercase, useDigits, useSpecial, lengthChange]);
+    
+      const copyToClipboard = () => {
         navigator.clipboard.writeText(password).then(() => {
             setOpen(true)
         }, () => {
