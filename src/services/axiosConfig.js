@@ -1,6 +1,6 @@
 import axios from 'axios';
 const axiosWithAuth = axios.create({
-  baseURL: "password-manager.electromania.tech/api",
+  baseURL: "https://password-manager.electromania.tech/api",
 });
 
 axiosWithAuth.interceptors.request.use(
